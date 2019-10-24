@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Filter &#8212; osmfilter 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="API" href="api.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="index.html">osmfilter 0.1 documentation</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="api.html" title="API"
+             accesskey="P">previous</a> |
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="filter">
+<h1>Filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h1>
+<p>The following filter structures are used to filter OSM items by their tags.
+Tags are key-value pair, e.g. <strong>“substance”:”gas”</strong>.<br />In this example, we the pre_filters to any identify gas transport data.
+The blackfilter and whitefilter is then used to identify gas transport pipelines from<br />the prefiltered data.</p>
+<div class="section" id="pre-filter">
+<h2>pre_filter<a class="headerlink" href="#pre-filter" title="Permalink to this headline">¶</a></h2>
+<p>The pre_filter is a whitelist filter which will pass any item, if one key-value condition is fulfilled.<br />It consists of dictionary separated for each OSM item type, namely node,way and relation.<br />For each key, several possible value options can be named.<br />For example, <strong>“substance”: [“gas”,”cng”]</strong>, will allow the values
+“gas” and “cng” for the key “gas”.<br />It is also possible to pass any value of a given key, by setting the True boolean.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pre_filter</span> <span class="o">=</span> <span class="p">{</span>
+<span class="n">Node</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;substance&quot;</span>    <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gas&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">],</span>
+       <span class="s2">&quot;pipeline&quot;</span>     <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;substation&quot;</span><span class="p">,</span><span class="s2">&quot;marker&quot;</span><span class="p">,</span><span class="s2">&quot;valve&quot;</span><span class="p">,</span><span class="s2">&quot;pressure_control_station&quot;</span><span class="p">,</span><span class="kc">True</span><span class="p">],</span>
+       <span class="s2">&quot;product&quot;</span>      <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gas&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">],</span>
+       <span class="s2">&quot;substation&quot;</span>   <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;valve&quot;</span><span class="p">,</span><span class="s2">&quot;measurement&quot;</span><span class="p">,</span> <span class="s2">&quot;inspection_gauge&quot;</span><span class="p">,</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span><span class="s2">&quot;valve_group&quot;</span><span class="p">],</span>
+       <span class="s2">&quot;man_made&quot;</span>     <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;pipeline&quot;</span><span class="p">,</span><span class="s2">&quot;pipeline_marker&quot;</span><span class="p">,</span><span class="s2">&quot;pumping_station&quot;</span><span class="p">],</span>
+       <span class="s2">&quot;gas&quot;</span>          <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;station&quot;</span><span class="p">,</span><span class="kc">True</span><span class="p">],</span>
+       <span class="s2">&quot;content&quot;</span>      <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gas&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">],</span>
+       <span class="s2">&quot;storage&quot;</span>      <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gas&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">],</span>
+       <span class="s2">&quot;industrial&quot;</span>   <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gas&quot;</span><span class="p">,</span><span class="s2">&quot;terminal&quot;</span><span class="p">,</span><span class="s2">&quot;wellsite&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">]</span>
+          <span class="p">},</span>
+
+<span class="n">Way</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;substance&quot;</span>     <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gas&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">],</span>
+      <span class="s2">&quot;man_made&quot;</span>      <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gasometer&quot;</span><span class="p">,</span><span class="s2">&quot;pipeline&quot;</span><span class="p">,</span><span class="s2">&quot;petroleum_well&quot;</span><span class="p">,</span><span class="s2">&quot;pumping_station&quot;</span><span class="p">,</span>
+                         <span class="s2">&quot;pipeline_marker&quot;</span><span class="p">,</span><span class="s2">&quot;pipeline_station&quot;</span><span class="p">,</span><span class="s2">&quot;storage_tank&quot;</span><span class="p">,</span><span class="s2">&quot;gas_cavern&quot;</span><span class="p">],</span>
+      <span class="s2">&quot;industrial&quot;</span>    <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gas&quot;</span><span class="p">,</span><span class="s2">&quot;terminal&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">],</span>
+      <span class="s2">&quot;gas&quot;</span>           <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;station&quot;</span><span class="p">],</span>
+      <span class="s2">&quot;content&quot;</span>       <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gas&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">],</span>
+      <span class="s2">&quot;pipeline&quot;</span>      <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;substation&quot;</span><span class="p">,</span><span class="s2">&quot;marker&quot;</span><span class="p">,</span><span class="s2">&quot;valve&quot;</span><span class="p">,</span><span class="s2">&quot;pressure_control_station&quot;</span><span class="p">,</span><span class="kc">True</span><span class="p">],</span>
+      <span class="s2">&quot;storage&quot;</span>       <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gas&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">],</span>
+      <span class="s2">&quot;seamark:type&quot;</span>  <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;pipeline_submarine&quot;</span><span class="p">],</span>
+      <span class="s2">&quot;land_use&quot;</span>      <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;industrial:gas&quot;</span><span class="p">]</span>
+      <span class="p">},</span>
+
+<span class="n">Relation</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;substance&quot;</span>    <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gas&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">],</span>
+          <span class="s2">&quot;man_made&quot;</span>     <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gasometer&quot;</span><span class="p">,</span><span class="s2">&quot;pipeline&quot;</span><span class="p">,</span><span class="s2">&quot;petroleum_well&quot;</span><span class="p">,</span><span class="s2">&quot;pumping_station&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;pipeline_marker&quot;</span><span class="p">,</span><span class="s2">&quot;pipeline_station&quot;</span><span class="p">,</span><span class="s2">&quot;storage_tank&quot;</span><span class="p">,</span><span class="s2">&quot;gas_cavern&quot;</span><span class="p">],</span>
+          <span class="s2">&quot;industrial&quot;</span>   <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gas&quot;</span><span class="p">,</span><span class="s2">&quot;terminal&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">],</span>
+          <span class="s2">&quot;gas&quot;</span>          <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;station&quot;</span><span class="p">],</span>
+          <span class="s2">&quot;content&quot;</span>      <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gas&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">],</span>
+          <span class="s2">&quot;pipeline&quot;</span>     <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;substation&quot;</span><span class="p">,</span><span class="s2">&quot;marker&quot;</span><span class="p">,</span><span class="s2">&quot;valve&quot;</span><span class="p">,</span><span class="s2">&quot;pressure_control_station&quot;</span><span class="p">,</span><span class="kc">True</span><span class="p">],</span>
+          <span class="s2">&quot;storage&quot;</span>      <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gas&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">],</span>
+          <span class="s2">&quot;seamark:type&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;pipeline_submarine&quot;</span><span class="p">],</span>
+          <span class="s2">&quot;land_use&quot;</span>     <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;industrial:gas&quot;</span><span class="p">]</span>
+          <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="blackfilter">
+<h2>blackfilter<a class="headerlink" href="#blackfilter" title="Permalink to this headline">¶</a></h2>
+<p>The blacklist is a list of (key,value) tuples, which will not let items pass if one
+of the (key,value) tuples is present. It is prioritized above the whitelist.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">blackfilter</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;pipeline&quot;</span><span class="p">,</span><span class="s2">&quot;substation&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;substation&quot;</span><span class="p">,</span><span class="s2">&quot;distribution&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;usage&#39;</span><span class="p">,</span> <span class="s1">&#39;distribution&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;pipeline:type&#39;</span><span class="p">,</span><span class="s1">&#39;water&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;pipeline:type&#39;</span><span class="p">,</span> <span class="s1">&#39;sewer&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;pumping_station&quot;</span><span class="p">,</span><span class="s2">&quot;water&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;pumping_station&quot;</span><span class="p">,</span><span class="s2">&quot;sewage&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;pumping_station&#39;</span><span class="p">,</span><span class="s1">&#39;wastewater&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="s2">&quot;wastewater&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="s2">&quot;fuel&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="s2">&quot;sewage&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="s2">&quot;oil&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="s2">&quot;water&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span><span class="s2">&quot;sewage&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span><span class="s2">&quot;water&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span><span class="s2">&quot;hot_water&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span><span class="s2">&quot;fuel&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span><span class="s2">&quot;wastewater&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span><span class="s2">&quot;rainwater&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span> <span class="s2">&quot;drain&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span> <span class="s2">&quot;heat&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span> <span class="s2">&quot;gas,heat&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span> <span class="s2">&quot;heat,gas&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span> <span class="s2">&quot;ammonia&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span> <span class="s2">&quot;ethylen&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span><span class="s2">&quot;oil&quot;</span><span class="p">)</span>
+            <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="whitefilter">
+<h2>whitefilter<a class="headerlink" href="#whitefilter" title="Permalink to this headline">¶</a></h2>
+<p>The whitelist filter is a list of list of (key,value) tuples.
+If any list of (key,value) tuples is present, the item will pass<br />if it is not blocked by the blacklist at the same time.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">whitefilter</span><span class="o">=</span><span class="p">[</span>
+             <span class="p">((</span><span class="s2">&quot;man_made&quot;</span><span class="p">,</span><span class="s2">&quot;pipeline&quot;</span><span class="p">),(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span><span class="s2">&quot;gas&quot;</span><span class="p">)),</span>
+             <span class="p">((</span><span class="s2">&quot;man_made&quot;</span><span class="p">,</span><span class="s2">&quot;pipeline&quot;</span><span class="p">),(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">)),</span>
+             <span class="p">((</span><span class="s2">&quot;man_made&quot;</span><span class="p">,</span><span class="s2">&quot;pipeline&quot;</span><span class="p">),(</span><span class="s2">&quot;substance&quot;</span><span class="p">,</span><span class="s2">&quot;natural_gas&quot;</span><span class="p">)),</span>
+             <span class="p">((</span><span class="s2">&quot;man_made&quot;</span><span class="p">,</span><span class="s2">&quot;pipeline&quot;</span><span class="p">),(</span><span class="s2">&quot;pipeline:type&quot;</span><span class="p">,</span><span class="s2">&quot;natural_gas&quot;</span><span class="p">)),</span>
+             <span class="p">((</span><span class="s2">&quot;man_made&quot;</span><span class="p">,</span><span class="s2">&quot;pipeline&quot;</span><span class="p">),(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="s2">&quot;gas&quot;</span><span class="p">)),</span>
+             <span class="p">((</span><span class="s2">&quot;man_made&quot;</span><span class="p">,</span><span class="s2">&quot;pipeline&quot;</span><span class="p">),(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="s2">&quot;natural_gas&quot;</span><span class="p">)),</span>  
+             <span class="p">((</span><span class="s2">&quot;man_made&quot;</span><span class="p">,</span><span class="s2">&quot;pipeline&quot;</span><span class="p">),(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">)),</span> 
+             <span class="p">((</span><span class="s2">&quot;man_made&quot;</span><span class="p">,</span><span class="s2">&quot;pipeline&quot;</span><span class="p">),(</span><span class="s2">&quot;industrial&quot;</span><span class="p">,</span><span class="s2">&quot;gas&quot;</span><span class="p">)),</span> 
+             <span class="p">((</span><span class="s2">&quot;man_made&quot;</span><span class="p">,</span><span class="s2">&quot;pipeline&quot;</span><span class="p">),(</span><span class="s2">&quot;industrial&quot;</span><span class="p">,</span><span class="s2">&quot;cng&quot;</span><span class="p">)),</span> 
+             <span class="p">((</span><span class="s2">&quot;man_made&quot;</span><span class="p">,</span><span class="s2">&quot;pipeline&quot;</span><span class="p">),(</span><span class="s2">&quot;industrial&quot;</span><span class="p">,</span><span class="s2">&quot;natural_gas&quot;</span><span class="p">))</span>
+            <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-osmfilter.osmfilter">osmfilter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-osmfilter.element_filter">element_filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-osmfilter.osm_pickle">osm_pickle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-osmfilter.pre_filter">pre_filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-osmfilter.osm_info">osm_info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-osmfilter.osm_colors">osm_colors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Filter</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Search</h3>
+            <form class="search" action="search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="Go" />
+            </form>
+          </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="api.html" title="API"
+              >previous</a> |
+            <a href="py-modindex.html" title="Python Module Index"
+              >modules</a> |
+            <a href="genindex.html" title="General Index"
+              >index</a>
+          </div>
+          <div role="note" aria-label="source link">
+              <br/>
+              <a href="_sources/filter.md.txt"
+                rel="nofollow">Show Source</a>
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Adam Pluta.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

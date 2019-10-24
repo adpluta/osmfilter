@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>API &#8212; osmfilter 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Filter" href="filter.html" />
+    <link rel="prev" title="Welcome to osmfilter’s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="index.html">osmfilter 0.1 documentation</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="index.html" title="Welcome to osmfilter’s documentation!"
+             accesskey="P">previous</a> |
+          <a href="filter.html" title="Filter"
+             accesskey="N">next</a> |
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="module-osmfilter.osmfilter">
+<span id="osmfilter"></span><h1>osmfilter<a class="headerlink" href="#module-osmfilter.osmfilter" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="osmfilter.osmfilter.create_single_element">
+<code class="sig-prename descclassname">osmfilter.osmfilter.</code><code class="sig-name descname">create_single_element</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">JSON_outputfile</em>, <em class="sig-param">whitefilter</em>, <em class="sig-param">blackfilter</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.osmfilter.create_single_element" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong> </dt><dd><p>the prefiltered OSM data are filtered for a specific element.</p>
+</dd>
+<dt><strong>Input</strong></dt><dd><dl class="simple">
+<dt>data:</dt><dd><p>dictionary of prefiltered data</p>
+</dd>
+<dt>whitefilter:</dt><dd><p>(see doc: filter)</p>
+</dd>
+<dt>blackfilter:</dt><dd><p>(see doc: filter)</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>Return</strong> </dt><dd><dl class="simple">
+<dt>elements:</dt><dd><p>dictionaries with filtered elements</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="osmfilter.osmfilter.find_elements">
+<code class="sig-prename descclassname">osmfilter.osmfilter.</code><code class="sig-name descname">find_elements</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">ID_type_list</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.osmfilter.find_elements" title="Permalink to this definition">¶</a></dt>
+<dd><dl>
+<dt><strong>Purpose</strong></dt><dd><p>use ID_type_list to find items in the prefiltered data and return 
+them in a dict</p>
+</dd>
+<dt><strong>Input</strong></dt><dd><dl>
+<dt>data: </dt><dd><p>dictionary of prefiltered Data</p>
+</dd>
+<dt>ID_type_list: </dt><dd><p>[({OSM_id},{OSM_item_type}),]</p>
+<p>e.g. [(‘457320703’,’Node’),(‘457320703’,’Node’)]</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>Output</strong></dt><dd><dl class="simple">
+<dt>elements:</dt><dd><p>dictionary of Nodes, Ways and Relation</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="osmfilter.osmfilter.run_filter">
+<code class="sig-prename descclassname">osmfilter.osmfilter.</code><code class="sig-name descname">run_filter</code><span class="sig-paren">(</span><em class="sig-param">elementname</em>, <em class="sig-param">countrycode</em>, <em class="sig-param">PBF_inputfile</em>, <em class="sig-param">JSON_outputfile</em>, <em class="sig-param">prefilter</em>, <em class="sig-param">whitefilter</em>, <em class="sig-param">blackfilter</em>, <em class="sig-param">NewPreFilterData=True</em>, <em class="sig-param">CreateElements=True</em>, <em class="sig-param">LoadElements=True</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.osmfilter.run_filter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>Reads OSM pbf-files, filters data and storages the output as elements in JSON files`</p>
+</dd>
+<dt><strong>Input</strong></dt><dd><dl class="simple">
+<dt>elementname:</dt><dd><p>name of the element (e.g. ‘pipelines’)</p>
+</dd>
+<dt>countrycode: </dt><dd><p>two digits, (e.g. ‘EU’)</p>
+</dd>
+<dt>PBF_inputfile: </dt><dd><p>filepathname of inputfile</p>
+</dd>
+<dt>JSON_outputfile: </dt><dd><p>filedir of output</p>
+</dd>
+<dt>prefilter: </dt><dd><p>prefilter data (see doc: filter)</p>
+</dd>
+<dt>whitefilter:</dt><dd><p>whitefilter data (see doc:   <span class="xref std std-ref">filter</span> )</p>
+</dd>
+<dt>blackfilter:</dt><dd><p>blackfilter data (see doc: filter)</p>
+</dd>
+<dt>NewPreFilterData:</dt><dd><p>prefilter and store Data from pbf</p>
+</dd>
+<dt>CreateElements:</dt><dd><p>filter and store Elements from Data</p>
+</dd>
+<dt>LoadElements:</dt><dd><p>load Elements</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>Return</strong></dt><dd><dl class="simple">
+<dt>Data:</dt><dd><p>prefiltered Data of pbf</p>
+</dd>
+<dt>Elements:</dt><dd><p>filtered Elements from Data</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><strong>Example</strong></p>
+<dl class="simple">
+<dt>Access output:</dt><dd><p>Data[‘Node’][‘6037838916’][‘lonlat’]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="osmfilter.osmfilter.write_elements">
+<code class="sig-prename descclassname">osmfilter.osmfilter.</code><code class="sig-name descname">write_elements</code><span class="sig-paren">(</span><em class="sig-param">elements</em>, <em class="sig-param">elementname</em>, <em class="sig-param">outputdir</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.osmfilter.write_elements" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>writes elements to JSON file in outputdir</p>
+</dd>
+<dt><strong>Input</strong></dt><dd><dl class="simple">
+<dt>elements:   </dt><dd><p>list of filtered element items</p>
+</dd>
+<dt>elementname: </dt><dd><p>name of the elements (e.g. ‘pipelines’)</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>writes elements to jsonfile at outputdir</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="osmfilter.osmfilter.write_overview">
+<code class="sig-prename descclassname">osmfilter.osmfilter.</code><code class="sig-name descname">write_overview</code><span class="sig-paren">(</span><em class="sig-param">elements</em>, <em class="sig-param">elementname</em>, <em class="sig-param">outputdir</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.osmfilter.write_overview" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>writes overview of elements to outputdir</p>
+</dd>
+<dt><strong>Input</strong></dt><dd><dl class="simple">
+<dt>elements:   </dt><dd><p>list of filtered element items</p>
+</dd>
+<dt>elementname: </dt><dd><p>name of the elements (e.g. ‘pipelines’)</p>
+</dd>
+<dt>outputdir: </dt><dd><p>relative name of outputdir</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-osmfilter.element_filter">
+<span id="element-filter"></span><h1>element_filter<a class="headerlink" href="#module-osmfilter.element_filter" title="Permalink to this headline">¶</a></h1>
+<p>Module to applicate the whitelist and blacklist filter for elements</p>
+<dl class="function">
+<dt id="osmfilter.element_filter.GetOSM_IDs">
+<code class="sig-prename descclassname">osmfilter.element_filter.</code><code class="sig-name descname">GetOSM_IDs</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">whitefilter</em>, <em class="sig-param">blackfilter</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.element_filter.GetOSM_IDs" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>method to sums up all filter results</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>returning unique list of OSM ids, that fulfill filter request</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="osmfilter.element_filter.filter4entry">
+<code class="sig-prename descclassname">osmfilter.element_filter.</code><code class="sig-name descname">filter4entry</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">blackfilter</em>, <em class="sig-param">entry</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.element_filter.filter4entry" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>filter prefiltered Data for elements</p>
+</dd>
+<dt><strong>Input</strong> </dt><dd><dl class="simple">
+<dt>Data:</dt><dd><p>dictionary of prefiltered data</p>
+</dd>
+<dt>blackfilter:</dt><dd><p>blackfilterlist (see doc: filter)</p>
+</dd>
+<dt>entry:</dt><dd><p>entry from whitefilter (see doc: filter)</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>Output</strong></dt><dd><dl class="simple">
+<dt>filterIDlist</dt><dd><p>list of IDs which pass the check</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="osmfilter.element_filter.sum_filter_results">
+<code class="sig-prename descclassname">osmfilter.element_filter.</code><code class="sig-name descname">sum_filter_results</code><span class="sig-paren">(</span><em class="sig-param">*args</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.element_filter.sum_filter_results" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>helper method to sums up all filter results</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>returning unique list of OSM ids, that fulfill filter request</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-osmfilter.osm_pickle">
+<span id="osm-pickle"></span><h1>osm_pickle<a class="headerlink" href="#module-osmfilter.osm_pickle" title="Permalink to this headline">¶</a></h1>
+<p>Module for pickle load and saving.</p>
+<dl class="function">
+<dt id="osmfilter.osm_pickle.pickleload">
+<code class="sig-prename descclassname">osmfilter.osm_pickle.</code><code class="sig-name descname">pickleload</code><span class="sig-paren">(</span><em class="sig-param">elements</em>, <em class="sig-param">filedir</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.osm_pickle.pickleload" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>Restore elements dictionary from filedir</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="osmfilter.osm_pickle.picklesave">
+<code class="sig-prename descclassname">osmfilter.osm_pickle.</code><code class="sig-name descname">picklesave</code><span class="sig-paren">(</span><em class="sig-param">elements</em>, <em class="sig-param">filedir</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.osm_pickle.picklesave" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>Saves elements dictionary at filedir</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-osmfilter.pre_filter">
+<span id="pre-filter"></span><h1>pre_filter<a class="headerlink" href="#module-osmfilter.pre_filter" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="osmfilter.pre_filter.benchmark">
+<code class="sig-prename descclassname">osmfilter.pre_filter.</code><code class="sig-name descname">benchmark</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.pre_filter.benchmark" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>is used to calculate the execution time of the prefiltering process</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="osmfilter.pre_filter.by_id">
+<code class="sig-prename descclassname">osmfilter.pre_filter.</code><code class="sig-name descname">by_id</code><span class="sig-paren">(</span><em class="sig-param">entry</em>, <em class="sig-param">idset</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.pre_filter.by_id" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>checks if entry id is in the list idset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="osmfilter.pre_filter.completefilter">
+<code class="sig-prename descclassname">osmfilter.pre_filter.</code><code class="sig-name descname">completefilter</code><span class="sig-paren">(</span><em class="sig-param">entry</em>, <em class="sig-param">pre_filter</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.pre_filter.completefilter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>checks if an OSM-entry passes the pre_filter</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="osmfilter.pre_filter.filter_pbf">
+<code class="sig-prename descclassname">osmfilter.pre_filter.</code><code class="sig-name descname">filter_pbf</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">targetname</em>, <em class="sig-param">pre_filter</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.pre_filter.filter_pbf" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>Parallized pre-Filtering of OSM file by a pre_filter</p>
+</dd>
+<dt><strong>Input</strong> </dt><dd><dl class="simple">
+<dt>filename:</dt><dd><p>PBF file</p>
+</dd>
+<dt>pre_filter:</dt><dd><p>(see doc: filter)</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>Output</strong></dt><dd><dl class="simple">
+<dt>targetname:</dt><dd><p>JSON-file</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="osmfilter.pre_filter.load_entries">
+<code class="sig-prename descclassname">osmfilter.pre_filter.</code><code class="sig-name descname">load_entries</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">ofs</em>, <em class="sig-param">header</em>, <em class="sig-param">selection</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.pre_filter.load_entries" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>load entries from pbf file(filename) and stores them in data dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="osmfilter.pre_filter.nofilter">
+<code class="sig-prename descclassname">osmfilter.pre_filter.</code><code class="sig-name descname">nofilter</code><span class="sig-paren">(</span><em class="sig-param">entry</em>, <em class="sig-param">way_relation_members</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.pre_filter.nofilter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>checks if an entry is a way and if its id is already stored in the list 
+way_relation_members</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-osmfilter.osm_info">
+<span id="osm-info"></span><h1>osm_info<a class="headerlink" href="#module-osmfilter.osm_info" title="Permalink to this headline">¶</a></h1>
+<p>This module analysis the data dictionary for tags</p>
+<dl class="function">
+<dt id="osmfilter.osm_info.ReadJason">
+<code class="sig-prename descclassname">osmfilter.osm_info.</code><code class="sig-name descname">ReadJason</code><span class="sig-paren">(</span><em class="sig-param">inputfile</em>, <em class="sig-param">verbose='yes'</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.osm_info.ReadJason" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>Reading prefiltered OSM data from JSON file into dictionary
+Writes Nodes,Ways,Relation count into logfile</p>
+</dd>
+<dt><strong>Input</strong></dt><dd><dl class="simple">
+<dt>inputfile:</dt><dd><p>dirpathname of JSON-file</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>Calls</strong> </dt><dd><p>showtagcount</p>
+</dd>
+<dt><strong>Output</strong> </dt><dd><dl class="simple">
+<dt>Data:</dt><dd><p>dictionary of prefiltered data</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="osmfilter.osm_info.Tee">
+<em class="property">class </em><code class="sig-prename descclassname">osmfilter.osm_info.</code><code class="sig-name descname">Tee</code><span class="sig-paren">(</span><em class="sig-param">*files</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.osm_info.Tee" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>Parallel output to stdout and logfile=f</p>
+</dd>
+<dt><strong>Example</strong></dt><dd><p>original = sys.stdout
+sys.stdout = Tee(sys.stdout, f)
+sys.stdout = original</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="osmfilter.osm_info.data2NodeWayRelation">
+<code class="sig-prename descclassname">osmfilter.osm_info.</code><code class="sig-name descname">data2NodeWayRelation</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.osm_info.data2NodeWayRelation" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>Splits data dictionary into 3 dictionaries for nodes, ways and relations</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="osmfilter.osm_info.showtagcount">
+<code class="sig-prename descclassname">osmfilter.osm_info.</code><code class="sig-name descname">showtagcount</code><span class="sig-paren">(</span><em class="sig-param">OSMdict</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.osm_info.showtagcount" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt><strong>Purpose</strong></dt><dd><p>Calculates the tagcount for each tag in OSMdict</p>
+</dd>
+<dt><strong>Input</strong></dt><dd><dl class="simple">
+<dt>OSMdict</dt><dd><p>prefiltered Data</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>Output</strong></dt><dd><p>Writes list with tags and their occurence count to stdout</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-osmfilter.osm_colors">
+<span id="osm-colors"></span><h1>osm_colors<a class="headerlink" href="#module-osmfilter.osm_colors" title="Permalink to this headline">¶</a></h1>
+<p>Helper string variables for colorized logging output in debugmode</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-osmfilter.osmfilter">osmfilter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-osmfilter.element_filter">element_filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-osmfilter.osm_pickle">osm_pickle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-osmfilter.pre_filter">pre_filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-osmfilter.osm_info">osm_info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-osmfilter.osm_colors">osm_colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter.html">Filter</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Search</h3>
+            <form class="search" action="search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="Go" />
+            </form>
+          </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="index.html" title="Welcome to osmfilter’s documentation!"
+              >previous</a> |
+            <a href="filter.html" title="Filter"
+              >next</a> |
+            <a href="py-modindex.html" title="Python Module Index"
+              >modules</a> |
+            <a href="genindex.html" title="General Index"
+              >index</a>
+          </div>
+          <div role="note" aria-label="source link">
+              <br/>
+              <a href="_sources/api.md.txt"
+                rel="nofollow">Show Source</a>
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Adam Pluta.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

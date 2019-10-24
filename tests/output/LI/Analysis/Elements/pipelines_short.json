@@ -1,0 +1,28 @@
+Overview OSM pipelines
+===========
+Nodes:                                0
+Ways:                                 2
+Relations:                            0
+===========
+
+
+
+------Way--------
+
+Nr. 1 of pipelines
+Id: 46796872
+Tags:
+{'location': 'underground',
+ 'man_made': 'pipeline',
+ 'name': 'Wäschgräble',
+ 'waterway': 'drain'}
+
+------Way--------
+
+Nr. 2 of pipelines
+Id: 46796846
+Tags:
+{'location': 'underground',
+ 'man_made': 'pipeline',
+ 'name': 'Wäschgräbli',
+ 'waterway': 'drain'}
