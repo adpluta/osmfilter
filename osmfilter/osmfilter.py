@@ -179,7 +179,7 @@ def run_filter(elementname,countrycode,PBF_inputfile,JSON_outputfile,
         prefilter: 
             prefilter data (see doc: filter)
         whitefilter:
-            whitefilter data (see doc:   :ref:`filter` )
+            whitefilter data (see doc:   :ref:`filter <filter>' )
         blackfilter:
             blackfilter data (see doc: filter)
         NewPreFilterData:

@@ -1,0 +1,14 @@
+
+*.pyc
+*.pyo
+tests/__pycache__/
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.egg
+*.egg-info/
+
+doc/_build/
+doc/_static/
+doc/_templates/

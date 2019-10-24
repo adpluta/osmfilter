@@ -95,7 +95,7 @@ them in a dict</p>
 
 <dl class="function">
 <dt id="osmfilter.osmfilter.run_filter">
-<code class="sig-prename descclassname">osmfilter.osmfilter.</code><code class="sig-name descname">run_filter</code><span class="sig-paren">(</span><em class="sig-param">elementname</em>, <em class="sig-param">countrycode</em>, <em class="sig-param">PBF_inputfile</em>, <em class="sig-param">JSON_outputfile</em>, <em class="sig-param">prefilter</em>, <em class="sig-param">whitefilter</em>, <em class="sig-param">blackfilter</em>, <em class="sig-param">NewPreFilterData=True</em>, <em class="sig-param">CreateElements=True</em>, <em class="sig-param">LoadElements=True</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.osmfilter.run_filter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">osmfilter.osmfilter.</code><code class="sig-name descname">run_filter</code><span class="sig-paren">(</span><em class="sig-param">elementname</em>, <em class="sig-param">countrycode</em>, <em class="sig-param">PBF_inputfile</em>, <em class="sig-param">JSON_outputfile</em>, <em class="sig-param">prefilter</em>, <em class="sig-param">whitefilter</em>, <em class="sig-param">blackfilter</em>, <em class="sig-param">NewPreFilterData=True</em>, <em class="sig-param">CreateElements=True</em>, <em class="sig-param">LoadElements=True</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.osmfilter.run_filter" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt><strong>Purpose</strong></dt><dd><p>Reads OSM pbf-files, filters data and storages the output as elements in JSON files`</p>
 </dd>
@@ -110,7 +110,7 @@ them in a dict</p>
 </dd>
 <dt>prefilter: </dt><dd><p>prefilter data (see doc: filter)</p>
 </dd>
-<dt>whitefilter:</dt><dd><p>whitefilter data (see doc:   <span class="xref std std-ref">filter</span> )</p>
+<dt>whitefilter:</dt><dd><p>whitefilter data (see doc:   :ref:<a href="#id1"><span class="problematic" id="id2">`</span></a>filter &lt;filter&gt;’ )</p>
 </dd>
 <dt>blackfilter:</dt><dd><p>blackfilter data (see doc: filter)</p>
 </dd>
@@ -190,7 +190,7 @@ them in a dict</p>
 
 <dl class="function">
 <dt id="osmfilter.element_filter.filter4entry">
-<code class="sig-prename descclassname">osmfilter.element_filter.</code><code class="sig-name descname">filter4entry</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">blackfilter</em>, <em class="sig-param">entry</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.element_filter.filter4entry" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">osmfilter.element_filter.</code><code class="sig-name descname">filter4entry</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">blackfilter</em>, <em class="sig-param">whitefilter_entry</em><span class="sig-paren">)</span><a class="headerlink" href="#osmfilter.element_filter.filter4entry" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt><strong>Purpose</strong></dt><dd><p>filter prefiltered Data for elements</p>
 </dd>
